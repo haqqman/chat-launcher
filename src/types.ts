@@ -40,7 +40,7 @@ export const OPTIONS: ChatOption[] = [
   { label: 'Option Two', value: 'option-2' },
 ];
 
-export const DEFAULT_CONFIG: Required<ChatLauncherConfig> = {
+export const CONFIG: Required<ChatLauncherConfig> = {
   brandName: 'Agency by Haqqman',
   brandSubtitle: 'Chat with us for any inquiries',
   logoUrl: 'https://res.cloudinary.com/seapane-cloud/haqqman-bucket/meta/haqqman-logomark.svg',

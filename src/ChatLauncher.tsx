@@ -6,15 +6,15 @@ import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa6'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 
-import { ChatLauncherConfig, DEFAULT_CONFIG } from './types'
+import { ChatLauncherConfig, CONFIG } from './types'
 
-const ChatLauncherContext = React.createContext<ChatLauncherConfig>(DEFAULT_CONFIG);
+const ChatLauncherContext = React.createContext<ChatLauncherConfig>(CONFIG);
 
 export const ChatLauncherProvider: React.FC<{ config?: ChatLauncherConfig; children: React.ReactNode }> = ({ 
   config, 
   children 
 }) => {
-  const mergedConfig = { ...DEFAULT_CONFIG, ...config };
+  const mergedConfig = { ...CONFIG, ...config };
   return (
     <ChatLauncherContext.Provider value={mergedConfig}>
       {children}
