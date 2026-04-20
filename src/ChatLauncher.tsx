@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { createContext, useContext, useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMessageSquare, FiX, FiChevronDown } from 'react-icons/fi'
 import { FaWhatsapp, FaFacebookMessenger } from 'react-icons/fa6'
@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 import { ChatLauncherConfig, CONFIG } from './types'
 
-const ChatLauncherContext = React.createContext<ChatLauncherConfig>(CONFIG);
+const ChatLauncherContext = createContext<ChatLauncherConfig>(CONFIG);
 
 export const ChatLauncherProvider: React.FC<{ config?: ChatLauncherConfig; children: React.ReactNode }> = ({ 
   config, 
@@ -22,7 +22,7 @@ export const ChatLauncherProvider: React.FC<{ config?: ChatLauncherConfig; child
   );
 };
 
-export const useChatLauncher = () => React.useContext(ChatLauncherContext);
+export const useChatLauncher = () => useContext(ChatLauncherContext);
 
 export interface ChatLauncherProps extends ChatLauncherConfig {}
 

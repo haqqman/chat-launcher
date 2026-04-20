@@ -1,0 +1,13 @@
+import { defineConfig } from 'tsup'
+
+export default defineConfig({
+  entry: ['src/index.tsx'],
+  format: ['cjs', 'esm'],
+  dts: true,
+  minify: true,
+  clean: true,
+  external: ['react', 'react-dom', 'framer-motion', 'react-icons', 'next'],
+  banner: {
+    js: '"use client";',
+  },
+})

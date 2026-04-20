@@ -1,6 +1,6 @@
 {
   "name": "chat-launcher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A premium, customizable floating chat launcher by Haqqman",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build:ts": "tsup src/index.tsx --format cjs,esm --dts --minify --clean",
+    "build:ts": "tsup",
     "build:css": "npx tailwindcss -i ./src/styles.css -o ./dist/index.css --minify",
     "build": "bun run build:ts && bun run build:css",
     "dev": "tsup src/index.tsx --format cjs,esm --watch --dts",
