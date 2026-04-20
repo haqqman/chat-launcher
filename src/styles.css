@@ -1,0 +1,11 @@
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar for the inquiry dropdown if needed */
+.cl-custom-select::-webkit-scrollbar {
+  width: 6px;
+}
+.cl-custom-select::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+}

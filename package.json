@@ -1,0 +1,55 @@
+{
+  "name": "chat-launcher",
+  "version": "1.0.2",
+  "description": "A premium, customizable floating chat launcher by Haqqman",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:ts": "tsup src/index.tsx --format cjs,esm --dts --minify --clean",
+    "build:css": "npx tailwindcss -i ./src/styles.css -o ./dist/index.css --minify",
+    "build": "bun run build:ts && bun run build:css",
+    "dev": "tsup src/index.tsx --format cjs,esm --watch --dts",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "next.js",
+    "react",
+    "chat",
+    "launcher",
+    "haqqman"
+  ],
+  "author": "Haqqman <agency@haqqman.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haqqman/chat-launcher.git"
+  },
+  "homepage": "https://github.com/haqqman/chat-launcher#readme",
+  "bugs": {
+    "url": "https://github.com/haqqman/chat-launcher/issues"
+  },
+  "peerDependencies": {
+    "next": ">=13.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "framer-motion": "^12.35.1",
+    "react-icons": "^5.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "next": "^16.1.6",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.3"
+  }
+}
