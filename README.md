@@ -15,12 +15,41 @@ A premium, customizable floating chat launcher for Next.js/React applications. S
 ```bash
 bun i chat-launcher
 # or
-pnpm add chat-launcher
-# or
-yarn add chat-launcher
+npm install chat-launcher
 ```
 
-## Usage
+## Integration
+
+### 1. Style Setup
+
+Choose the setup method that matches your project's technology stack:
+
+#### For Tailwind CSS Projects
+Add the package to your `tailwind.config.js` or `tailwind.config.ts`. This allows your project's Tailwind engine to scan the launcher components and include the necessary styles in your main CSS bundle:
+
+```ts
+// tailwind.config.ts
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    // Add the chat-launcher distribution path
+    './node_modules/chat-launcher/dist/**/*.{js,ts,jsx,tsx}',
+  ],
+  // ...
+}
+export default config
+```
+
+#### For Non-Tailwind Projects
+Import the pre-built CSS file at the root of your application (e.g., in `layout.tsx` or `_app.tsx`):
+
+```tsx
+import 'chat-launcher/dist/index.css';
+```
+
+## Implementation
 
 ### 1. Global Configuration (Optional)
 You can set up global defaults using the `ChatLauncherProvider`. This is recommended for monorepos or multi-page applications.
@@ -28,7 +57,6 @@ You can set up global defaults using the `ChatLauncherProvider`. This is recomme
 ```tsx
 // layout.tsx or _app.tsx
 import { ChatLauncherProvider } from 'chat-launcher';
-import 'chat-launcher/dist/index.css';
 
 const globalConfig = {
   brandName: "Haqqman Studio",

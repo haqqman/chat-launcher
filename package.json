@@ -1,6 +1,6 @@
 {
   "name": "chat-launcher",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A premium, customizable floating chat launcher by Haqqman",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

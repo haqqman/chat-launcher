@@ -56,6 +56,7 @@ export const ChatLauncher: React.FC<ChatLauncherProps> = (props) => {
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const chatWidgetRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -207,22 +208,60 @@ export const ChatLauncher: React.FC<ChatLauncherProps> = (props) => {
                   {labels?.subject}
                 </label>
                 <div className='relative'>
-                  <select
-                    name='subject'
-                    value={subject}
-                    onChange={handleFormInputChange}
-                    className='w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm appearance-none focus:outline-none focus:ring-2 transition-all cursor-pointer'
+                  <button
+                    type='button'
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className='w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm flex items-center justify-between transition-all hover:bg-gray-100 focus:outline-none focus:ring-2'
                     style={{ '--tw-ring-color': 'var(--cl-accent)' } as any}
                   >
-                    <option value=''>{placeholders?.subject}</option>
-                    {options?.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                  <FiChevronDown
-                    className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'
-                    size={16}
-                  />
+                    <span className={subject ? 'text-gray-900' : 'text-gray-400'}>
+                      {options?.find(opt => opt.value === subject)?.label || placeholders?.subject}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FiChevronDown className='text-gray-400' size={16} />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <>
+                        <div 
+                          className='fixed inset-0 z-10' 
+                          onClick={() => setIsDropdownOpen(false)} 
+                        />
+                        <motion.div
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 4, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          className='absolute z-20 left-0 right-0 top-full bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden'
+                        >
+                          <div className='max-h-48 overflow-y-auto cl-custom-select'>
+                            {options?.map((opt) => (
+                              <button
+                                key={opt.value}
+                                type='button'
+                                onClick={() => {
+                                  setSubject(opt.value);
+                                  setIsDropdownOpen(false);
+                                }}
+                                className='w-full px-4 py-2.5 text-left text-sm hover:bg-gray-50 transition-colors flex items-center justify-between group'
+                              >
+                                <span className={subject === opt.value ? 'font-bold' : ''} style={{ color: subject === opt.value ? 'var(--cl-primary)' : 'inherit' }}>
+                                  {opt.label}
+                                </span>
+                                {subject === opt.value && (
+                                  <div className='w-1.5 h-1.5 rounded-full' style={{ backgroundColor: 'var(--cl-accent)' }} />
+                                )}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
 
